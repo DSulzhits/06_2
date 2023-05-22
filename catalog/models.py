@@ -27,6 +27,8 @@ class Category(models.Model):
     category_name = models.CharField(max_length=150, verbose_name='наименование')  # обязательно
     category_description = models.TextField(verbose_name='описание', **NULLABLE)
 
+    # category_created_at = models.DateTimeField(verbose_name='дата создания', auto_now_add=True, **NULLABLE)
+
     def __str__(self):
         return f'{self.category_name} {self.category_description}'
 
