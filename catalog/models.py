@@ -18,7 +18,6 @@ class Category(models.Model):
         ordering = ('name',)
 
 
-# Create your models here.
 class Product(models.Model):
     name = models.CharField(max_length=150, verbose_name='наименование')  # обязательно
     description = models.TextField(verbose_name='описание', **NULLABLE)
