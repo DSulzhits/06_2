@@ -1,6 +1,6 @@
 {% extends 'catalog/base.html' %}
+{% load mediapath %}
 {% block content %}
-
       <div class="col">
         <div class="card">
             <div class="card-body">
@@ -29,6 +29,7 @@
                         <td>Дата обновления:</td>
                         <td>{{ object.updated }}</td>
                     </tr>
+                    <img src="{% mediapath object.image %}" alt="Изображение"  width="150" height="150"/>
                 </table>
             </div>
             <div class="card-footer">
