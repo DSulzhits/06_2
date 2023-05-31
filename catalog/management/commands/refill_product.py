@@ -26,7 +26,7 @@ class Command(BaseCommand):
             {
                 "name": "Диагностика ПО",
                 "description": "Утилита для диагностики состояния вашего ПО и выявления возможных ошибок",
-                "image": "images/diagnostic.jpg",
+                "image": "images/diagnostic_1.jpg",
                 "category": Category.objects.get(name="Полезные утилиты"),
                 "price": 20000,
                 "created": "",
