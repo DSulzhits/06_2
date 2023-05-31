@@ -1,0 +1,39 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+
+      <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <table class="table">
+                    <tr>
+                        <td>Название продукта</td>
+                        <td>{{ object.name }} </td>
+                    </tr>
+                    <tr>
+                        <td>Описание продукта</td>
+                        <td>{{ object.description }}</td>
+                    </tr>
+                    <tr>
+                        <td>Категория</td>
+                        <td>{{ object.category }}</td>
+                    </tr>
+                    <tr>
+                        <td>Цена продукта:</td>
+                        <td>{{ object.price }} RUR</td>
+                    </tr>
+                    <tr>
+                        <td>Дата добавления:</td>
+                        <td>{{ object.created }}</td>
+                    </tr>
+                    <tr>
+                        <td>Дата обновления:</td>
+                        <td>{{ object.updated }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="card-footer">
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
