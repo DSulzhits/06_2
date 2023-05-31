@@ -10,7 +10,7 @@ def home(request):
     return render(request, 'catalog/home.html', context)
 
 
-def display_info(request):
+def info(request):
     return render(request, 'catalog/info.html')
 
 
