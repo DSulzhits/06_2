@@ -1,13 +1,22 @@
 from django.shortcuts import render
 from catalog.models import Product
+from django.views import generic
 
 
-def home(request):
-    context = {
+class HomeView(generic.TemplateView):
+    template_name = 'catalog/home.html'
+    extra_context = {
         'object_list': Product.objects.all(),
         'title': 'Каталог'
     }
-    return render(request, 'catalog/home.html', context)
+
+
+# def home(request):
+#     context = {
+#         'object_list': Product.objects.all(),
+#         'title': 'Каталог'
+#     }
+#     return render(request, 'catalog/home.html', context)
 
 
 def product(request, pk):
