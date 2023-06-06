@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 NULLABLE = {'blank': True, 'null': True}
 
@@ -36,3 +37,28 @@ class Product(models.Model):
         verbose_name = 'продукт'
         verbose_name_plural = 'продукты'
         ordering = ('name',)
+
+
+class BlogRecord(models.Model):
+    title = models.CharField(max_length=150, verbose_name='Заголовок')
+    slug = models.SlugField(max_length=300, unique=True, db_index=True, verbose_name="URL")
+    content = models.TextField(verbose_name='Содержимое')
+    preview = models.ImageField(upload_to='records/', verbose_name='изображение(превью)', **NULLABLE)
+    created = models.DateField(verbose_name='дата создания', auto_now_add=True)
+    sign_of_publication = models.BooleanField(default=True, verbose_name='активный')
+    views = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.title}, {self.created}"
+
+    def get_url(self):
+        return reverse('record_detail', kwargs={'slug': self.slug})
+
+    class Meta:
+        verbose_name = 'Запись'
+        verbose_name_plural = 'Записи'
+        get_latest_by = 'created'
+
+    def views_count(self):
+        self.views += 1
+        self.save()
