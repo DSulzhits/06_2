@@ -40,7 +40,35 @@ class Command(BaseCommand):
                 "price": 1000,
                 "created": "",
                 "updated": "",
-            }]
+            },
+            {
+                "name": "Бот рассылки",
+                "description": "Бот который рассылает ваши уведомления в телеграм чаты и группы",
+                "image": "images/msg_bot.jpg",
+                "category": Category.objects.get(name="Телеграм боты"),
+                "price": 12000,
+                "created": "",
+                "updated": "",
+            },
+            {
+                "name": "Sky-Security",
+                "description": "Утилита для защиты вашего устройства от вредоносного ПО и злоумышленников",
+                "image": "images/security.png",
+                "category": Category.objects.get(name="Полезные утилиты"),
+                "price": 5000,
+                "created": "",
+                "updated": "",
+            },
+            {
+                "name": "Sky-Mail",
+                "description": "Ваш собственный почтовый сервер, на базе нашего облачного хранилища",
+                "image": "images/mail.jpg",
+                "category": Category.objects.get(name="Веб-приложения"),
+                "price": 30000,
+                "created": "",
+                "updated": "",
+            },
+        ]
 
         category_objects = []
 
