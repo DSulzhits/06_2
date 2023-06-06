@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
+
 from catalog.models import Product
 from django.views import generic
 
@@ -6,7 +8,14 @@ from django.views import generic
 class HomeView(generic.TemplateView):
     template_name = 'catalog/home.html'
     extra_context = {
-        'object_list': Product.objects.all(),
+        'object_list': Product.objects.all()[:4],
+        'title': 'Домашняя страница'
+    }
+
+
+class ProductListView(generic.ListView):
+    model = Product
+    extra_context = {
         'title': 'Каталог'
     }
 
@@ -19,13 +28,22 @@ class HomeView(generic.TemplateView):
 #     return render(request, 'catalog/home.html', context)
 
 
-def product(request, pk):
-    product_item = Product.objects.get(pk=pk)
-    context = {
-        'object': product_item,
-        'title': product_item.name
-    }
-    return render(request, 'catalog/product.html', context)
+class ProductDetailView(generic.DetailView):
+    model = Product
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['title'] = self.get_object()
+        return context_data
+
+
+# def product(request, pk):
+#     product_item = Product.objects.get(pk=pk)
+#     context = {
+#         'object': product_item,
+#         'title': product_item.name
+#     }
+#     return render(request, 'catalog/product.html', context)
 
 
 class ContactsView(generic.TemplateView):
