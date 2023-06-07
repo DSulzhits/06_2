@@ -29,10 +29,11 @@
                         <td>Дата обновления:</td>
                         <td>{{ object.updated }}</td>
                     </tr>
-                    <img src="{% mediapath object.image %}" alt="Изображение" width="450" height="300"/>
+                    <img src="{% mediapath object.image %}" alt="Изображение" width="450" height="400"/>
                 </table>
             </div>
             <div class="card-footer">
+                <a href="{% url 'catalog:products_list' %}" class="btn btn-primary"><< В каталог</a>
             </div>
         </div>
     </div>
