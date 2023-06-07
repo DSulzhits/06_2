@@ -2,6 +2,7 @@ from django.shortcuts import render
 from catalog.models import Product, BlogRecord
 from django.views import generic
 from django.urls import reverse_lazy
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 
 
 class HomeView(generic.TemplateView):
@@ -86,6 +87,20 @@ class BlogRecordListView(generic.ListView):
         return queryset
 
 
+class BlogRecordDeactivatedListView(generic.ListView):
+    """Контроллер для отображения блоговых записей"""
+    model = BlogRecord
+    extra_context = {
+        'title': 'Список деактивированных записей'
+    }
+
+    def get_queryset(self):
+        """Метод благодаря которому отображаются только неактивные записи"""
+        queryset = super().get_queryset()
+        queryset = queryset.filter(sign_of_publication=False)
+        return queryset
+
+
 class BlogRecordDetailView(generic.DetailView):
     """Контроллер для отображения одной блоговой записи в подробностях"""
     model = BlogRecord
@@ -94,6 +109,11 @@ class BlogRecordDetailView(generic.DetailView):
         context_data = super().get_context_data(**kwargs)
         # context_data['title'] = context_data['object']
         context_data['title'] = self.get_object()
+        object = self.get_object()
+        increase = get_object_or_404(BlogRecord, pk=object.pk)
+        increase.views_count()
+        # if increase.views == 100:
+        #     send_email(increase)
         return context_data
 
 
@@ -101,17 +121,27 @@ class BlogRecordCreateView(generic.CreateView):
     """Контроллер для создания блоговой записи"""
     model = BlogRecord
     fields = ('title', 'slug', 'content', 'preview')
-    success_url = reverse_lazy('catalog: blog_records_list')
+    success_url = reverse_lazy('catalog:blog_records')
 
 
 class BlogRecordUpdateView(generic.UpdateView):
     """Контроллер для обновления блоговой записи"""
     model = BlogRecord
     fields = ('title', 'slug', 'content', 'preview')
-    success_url = reverse_lazy('catalog: blog_records_list')
+    success_url = reverse_lazy('catalog: blog_records')
 
 
 class BlogRecordDeleteView(generic.DeleteView):
     """Контроллер для удаления блоговой записи"""
     model = BlogRecord
-    success_url = reverse_lazy('catalog: blog_records_list')
+    success_url = reverse_lazy('catalog: blog_records')
+
+
+def toggle_activity(request, slug):
+    blog_record_item = get_object_or_404(BlogRecord, slug=slug)
+    if blog_record_item.sign_of_publication:
+        blog_record_item.sign_of_publication = False
+    else:
+        blog_record_item.sign_of_publication = True
+    blog_record_item.save()
+    return redirect(reverse('catalog:blog_record_detail', args=[blog_record_item.slug]))
