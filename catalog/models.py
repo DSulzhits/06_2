@@ -51,8 +51,8 @@ class BlogRecord(models.Model):
     def __str__(self):
         return f"{self.title}, {self.created}"
 
-    def get_url(self):
-        return reverse('record_detail', kwargs={'slug': self.slug})
+    def get_absolute_url(self):
+        return reverse('catalog:blog_record_detail', kwargs={'slug': self.slug})
 
     class Meta:
         verbose_name = 'Запись'
