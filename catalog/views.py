@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 
 
 class HomeView(generic.TemplateView):
+    """Контроллер для работы с домашней страницей, показывает только 4 первых продукта"""
     template_name = 'catalog/home.html'
     extra_context = {
         'object_list': Product.objects.all()[:4],
@@ -13,6 +14,7 @@ class HomeView(generic.TemplateView):
 
 
 class ProductListView(generic.ListView):
+    """Контроллер для работы со страницей, со всеми продуктами"""
     model = Product
     extra_context = {
         'title': 'Каталог'
@@ -28,6 +30,7 @@ class ProductListView(generic.ListView):
 
 
 class ProductDetailView(generic.DetailView):
+    """Контроллер для работы со страницей продукта (подробная информация о продукте)"""
     model = Product
 
     def get_context_data(self, **kwargs):
@@ -46,12 +49,14 @@ class ProductDetailView(generic.DetailView):
 
 
 class ContactsView(generic.TemplateView):
+    """Контроллер для работы страницы с контактами"""
     template_name = 'catalog/contacts.html'
     extra_context = {
         'title': 'Контакты'
     }
 
     def post(self, request, *args, **kwargs):
+        """Метод для отправки данных пост запросом на сервер"""
         name = request.POST.get('name', '')
         phone = request.POST.get('phone', '')
         message = request.POST.get('message', '')
@@ -68,18 +73,21 @@ class ContactsView(generic.TemplateView):
 #    return render(request, 'catalog/contacts.html')
 
 class BlogRecordListView(generic.ListView):
+    """Контроллер для отображения блоговых записей"""
     model = BlogRecord
     extra_context = {
         'title': 'Список записей'
     }
 
     def get_queryset(self):
+        """Метод благодаря которому отображаются только активные записи"""
         queryset = super().get_queryset()
-        queryset = queryset.filter(is_active=True)
+        queryset = queryset.filter(sign_of_publication=True)
         return queryset
 
 
 class BlogRecordDetailView(generic.DetailView):
+    """Контроллер для отображения одной блоговой записи в подробностях"""
     model = BlogRecord
 
     def get_context_data(self, **kwargs):
@@ -90,17 +98,20 @@ class BlogRecordDetailView(generic.DetailView):
 
 
 class BlogRecordCreateView(generic.CreateView):
+    """Контроллер для создания блоговой записи"""
     model = BlogRecord
     fields = ('title', 'slug', 'content', 'preview')
     success_url = reverse_lazy('catalog: blog_records_list')
 
 
 class BlogRecordUpdateView(generic.UpdateView):
+    """Контроллер для обновления блоговой записи"""
     model = BlogRecord
     fields = ('title', 'slug', 'content', 'preview')
     success_url = reverse_lazy('catalog: blog_records_list')
 
 
 class BlogRecordDeleteView(generic.DeleteView):
+    """Контроллер для удаления блоговой записи"""
     model = BlogRecord
     success_url = reverse_lazy('catalog: blog_records_list')
