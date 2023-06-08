@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from catalog.services import send_email
 from catalog.models import Product, BlogRecord
 from django.views import generic
 from django.urls import reverse_lazy
@@ -112,8 +113,8 @@ class BlogRecordDetailView(generic.DetailView):
         object = self.get_object()
         increase = get_object_or_404(BlogRecord, pk=object.pk)
         increase.views_count()
-        # if increase.views == 100:
-        #     send_email(increase)
+        if increase.views == 100:
+            send_email(increase)
         return context_data
 
 
