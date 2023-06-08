@@ -128,13 +128,13 @@ class BlogRecordUpdateView(generic.UpdateView):
     """Контроллер для обновления блоговой записи"""
     model = BlogRecord
     fields = ('title', 'slug', 'content', 'preview')
-    success_url = reverse_lazy('catalog: blog_records')
+    success_url = reverse_lazy('catalog:blog_records')
 
 
 class BlogRecordDeleteView(generic.DeleteView):
     """Контроллер для удаления блоговой записи"""
     model = BlogRecord
-    success_url = reverse_lazy('catalog: blog_records')
+    success_url = reverse_lazy('catalog:blog_records')
 
 
 def toggle_activity(request, slug):
@@ -144,4 +144,4 @@ def toggle_activity(request, slug):
     else:
         blog_record_item.sign_of_publication = True
     blog_record_item.save()
-    return redirect(reverse('catalog:blog_record_detail', args=[blog_record_item.slug]))
+    return redirect(reverse('catalog:blog_records'))
