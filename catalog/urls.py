@@ -16,8 +16,7 @@ urlpatterns = [
     path('blog_records_deactivated/', BlogRecordDeactivatedListView.as_view(), name='blog_records_deactivated'),
     path('blog_records/<slug:slug>/', BlogRecordDetailView.as_view(), name='blog_record_detail'),
     path('blog_record/create/', BlogRecordCreateView.as_view(), name='blog_record_create'),
-    path('blog_record/update/<int:pk>/', BlogRecordUpdateView.as_view(), name='blog_record_update'),
-    path('blog_record/delete/<int:pk>/', BlogRecordDeleteView.as_view(), name='blog_record_delete'),
-    path('blog_record/delete/<int:pk>/', BlogRecordDeleteView.as_view(), name='blog_record_delete'),
+    path('blog_record/update/<slug:slug>/', BlogRecordUpdateView.as_view(), name='blog_record_update'),
+    path('blog_record/delete/<slug:slug>/', BlogRecordDeleteView.as_view(), name='blog_record_delete'),
     path('blog_record/toggle/<slug:slug>/', toggle_activity, name='toggle_activity'),
 ]
