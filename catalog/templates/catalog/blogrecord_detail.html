@@ -26,13 +26,6 @@
             </div>
             <div class="card-footer">
                 <a href="{% url 'catalog:blog_records' %}" class="btn btn-primary"><< Назад</a>
-                <a href="{% url 'catalog:toggle_activity' object.slug %}" class="btn btn-outline-warning float-right">
-                    {% if object.sign_of_publication %}
-                        Деактивировать
-                    {% else %}
-                        Активировать
-                    {% endif %}
-                </a>
             </div>
         </div>
     </div>
