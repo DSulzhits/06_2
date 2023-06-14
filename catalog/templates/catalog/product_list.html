@@ -8,6 +8,7 @@
                 {% include 'catalog/includes/inc_product_form.html' %}
             {% endfor %}
         </div>
+    <a href="{% url 'catalog:product_create' %}" class="btn btn-outline-primary m-2">Новый продукт</a>
     </div>
 
 {% endblock %}
