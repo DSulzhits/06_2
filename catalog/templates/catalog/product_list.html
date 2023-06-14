@@ -4,11 +4,11 @@
 
     <div class="container">
         <div class="row text-center">
-            {% for object in object_list %}
+            {% for object in product_list %}
                 {% include 'catalog/includes/inc_product_form.html' %}
             {% endfor %}
         </div>
-    <a href="{% url 'catalog:product_create' %}" class="btn btn-outline-primary m-2">Новый продукт</a>
+        <a href="{% url 'catalog:product_create' %}" class="btn btn-outline-primary m-2">Новый продукт</a>
     </div>
 
 {% endblock %}
