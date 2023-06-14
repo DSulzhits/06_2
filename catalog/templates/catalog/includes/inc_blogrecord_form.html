@@ -10,10 +10,10 @@
             <ul class="list-unstyled mt-3 mb-4 text-start m-3">
                 <li> {{ object.content|truncatechars:45 }} </li>
             </ul>
-            <a class="btn btn-lg btn-block btn-outline-primary"
+            <a class="btn btn-lg btn-block btn-outline-info"
                href="{% url 'catalog:blog_record_detail' object.slug %}">Подробнее</a>
             <a href="{% url 'catalog:blog_record_update' object.slug %}"
-               class="btn btn-lg btn-block btn-outline-warning">Изменить запись</a>
+               class="btn btn-lg btn-block btn-outline-warning">Изменить/Удалить</a>
             <a href="{% url 'catalog:toggle_activity' object.slug %}"
                class="btn btn-lg btn-block btn-outline-secondary">
                 {% if object.sign_of_publication %}
@@ -22,8 +22,6 @@
                     Активировать
                 {% endif %}
             </a>
-            <a href="{% url 'catalog:blog_record_delete' object.slug %}"
-               class="btn btn-lg btn-block btn-outline-danger">Удалить</a>
         </div>
     </div>
 </div>
