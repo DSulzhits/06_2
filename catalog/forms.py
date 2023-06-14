@@ -15,6 +15,14 @@ class ProductForm(StyleFormMixin, forms.ModelForm):
         model = Product
         exclude = ('created', 'updated')
 
+    def clean_name(self):
+        cleaned_data = self.cleaned_data['name']
+        banned_names_list = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция',
+                             'радар']
+        if cleaned_data.lower() in banned_names_list:
+            raise forms.ValidationError(f'Наименование {cleaned_data} запрещено к использованию')
+        return cleaned_data
+
 
 class BlogRecordForm(StyleFormMixin, forms.ModelForm):
     class Meta:
