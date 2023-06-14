@@ -1,0 +1,27 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <table class="table">
+                    <tr>
+                        <td>Продукт</td>
+                        <td>{{ version.product.name }} </td>
+                    </tr>
+                    <tr>
+                        <td>Номер версии</td>
+                        <td>{{ version.number }}</td>
+                    </tr>
+                    <tr>
+                        <td>Имя версии</td>
+                        <td>{{ version.name }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="card-footer">
+                <a href="{% url 'catalog:products_list' %}" class="btn btn-primary"><< Назад</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
