@@ -7,21 +7,21 @@
                 <table class="table">
                     <tr>
                         <td>Заголовок</td>
-                        <td>{{ object.title }} </td>
+                        <td>{{ blogrecord.title }} </td>
                     </tr>
                     <tr>
                         <td>Содержимое</td>
-                        <td>{{ object.content }}</td>
+                        <td>{{ blogrecord.content }}</td>
                     </tr>
                     <tr>
                         <td>Дата создания::</td>
-                        <td>{{ object.created }}</td>
+                        <td>{{ blogrecord.created }}</td>
                     </tr>
                     <tr>
                         <td>Количество просмотров:</td>
-                        <td>{{ object.views }}</td>
+                        <td>{{ blogrecord.views }}</td>
                     </tr>
-                    <img src="{% mediapath object.preview %}" alt="Изображение" width="450" height="300"/>
+                    <img src="{% mediapath blogrecord.preview %}" alt="Изображение" width="450" height="300"/>
                 </table>
             </div>
             <div class="card-footer">
