@@ -4,6 +4,7 @@ from catalog.models import Product, BlogRecord
 from django.views import generic
 from django.urls import reverse_lazy
 from django.shortcuts import render, get_object_or_404, reverse, redirect
+from catalog.forms import BlogRecordForm, ProductForm
 
 
 class HomeView(generic.TemplateView):
@@ -34,6 +35,7 @@ class ProductListView(generic.ListView):
 class ProductDetailView(generic.DetailView):
     """Контроллер для работы со страницей продукта (подробная информация о продукте)"""
     model = Product
+    form_class = ProductForm
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
@@ -121,14 +123,14 @@ class BlogRecordDetailView(generic.DetailView):
 class BlogRecordCreateView(generic.CreateView):
     """Контроллер для создания блоговой записи"""
     model = BlogRecord
-    fields = ('title', 'slug', 'content', 'preview')
+    form_class = BlogRecordForm
     success_url = reverse_lazy('catalog:blog_records')
 
 
 class BlogRecordUpdateView(generic.UpdateView):
     """Контроллер для обновления блоговой записи"""
     model = BlogRecord
-    fields = ('title', 'slug', 'content', 'preview')
+    form_class = BlogRecordForm
     success_url = reverse_lazy('catalog:blog_records')
 
 
