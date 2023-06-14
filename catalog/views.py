@@ -1,10 +1,9 @@
-from django.shortcuts import render
 from catalog.services import send_email
-from catalog.models import Product, BlogRecord
+from catalog.models import Product, BlogRecord, Version
 from django.views import generic
 from django.urls import reverse_lazy
 from django.shortcuts import render, get_object_or_404, reverse, redirect
-from catalog.forms import BlogRecordForm, ProductForm
+from catalog.forms import BlogRecordForm, ProductForm, VersionForm
 
 
 class HomeView(generic.TemplateView):
@@ -68,6 +67,35 @@ class ProductDeleteView(generic.DeleteView):
     """Контроллер для удаления продукта"""
     model = Product
     success_url = reverse_lazy('catalog:products_list')
+
+
+class VersionListView(generic.ListView):
+    model = Version
+    extra_context = {
+        'title': 'Список активных версий',
+        'object_list': Version.objects.filter(sign_of_current_version=True)
+    }
+
+    def get_queryset(self):
+        """Метод благодаря которому отображаются только активные записи"""
+        queryset = super().get_queryset()
+        queryset = queryset.filter(sign_of_current_version=True)
+        return queryset
+
+
+class VersionUpdateView(generic.UpdateView):
+    model = Version
+    form_class = VersionForm
+    success_url = reverse_lazy('catalog:products_list')
+
+
+class VersionDetailView(generic.DetailView):
+    model = Version
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['title'] = self.get_object()
+        return context_data
 
 
 class ContactsView(generic.TemplateView):
