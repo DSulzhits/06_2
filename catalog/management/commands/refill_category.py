@@ -27,6 +27,5 @@ class Command(BaseCommand):
 
         for category_item in category_list:
             category_objects.append(Category(**category_item))
-            # Student.objects.create(**student_item)
 
         Category.objects.bulk_create(category_objects)
