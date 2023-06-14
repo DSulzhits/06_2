@@ -39,6 +39,21 @@ class Product(models.Model):
         ordering = ('name',)
 
 
+class Version(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='продукт')
+    number = models.IntegerField(verbose_name='номер версии')
+    name = models.CharField(max_length=150, verbose_name='название версии')
+    sign_of_current_version = models.BooleanField(default=True, verbose_name='активный')
+
+    def __str__(self):
+        return f'{self.product} {self.number}'
+
+    class Meta:
+        verbose_name = 'версия'
+        verbose_name_plural = 'версии'
+        ordering = ('number',)
+
+
 class BlogRecord(models.Model):
     title = models.CharField(max_length=150, verbose_name='Заголовок')
     slug = models.SlugField(max_length=300, unique=True, db_index=True, verbose_name="URL")
