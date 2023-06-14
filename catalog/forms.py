@@ -1,6 +1,6 @@
 from django import forms
 
-from catalog.models import Product, BlogRecord
+from catalog.models import Product, BlogRecord, Version
 
 
 class StyleFormMixin:
@@ -13,7 +13,7 @@ class StyleFormMixin:
 class ProductForm(StyleFormMixin, forms.ModelForm):
     class Meta:
         model = Product
-        exclude = ('created', 'updated')
+        exclude = ('created', 'updated',)
 
     def clean_name(self):
         cleaned_data = self.cleaned_data['name']
@@ -22,6 +22,12 @@ class ProductForm(StyleFormMixin, forms.ModelForm):
         if cleaned_data.lower() in banned_names_list:
             raise forms.ValidationError(f'Наименование {cleaned_data} запрещено к использованию')
         return cleaned_data
+
+
+class VersionForm(StyleFormMixin, forms.ModelForm):
+    class Meta:
+        model = Version
+        exclude = ('sign_of_publication',)
 
 
 class BlogRecordForm(StyleFormMixin, forms.ModelForm):
