@@ -35,7 +35,6 @@ class ProductListView(generic.ListView):
 class ProductDetailView(generic.DetailView):
     """Контроллер для работы со страницей продукта (подробная информация о продукте)"""
     model = Product
-    form_class = ProductForm
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
@@ -50,6 +49,25 @@ class ProductDetailView(generic.DetailView):
 #         'title': product_item.name
 #     }
 #     return render(request, 'catalog/product.html', context)
+
+class ProductCreateView(generic.CreateView):
+    """Контроллер для создания продукта"""
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy('catalog:products_list')
+
+
+class ProductUpdateView(generic.UpdateView):
+    """Контроллер для обновления продукта"""
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy('catalog:products_list')
+
+
+class ProductDeleteView(generic.DeleteView):
+    """Контроллер для удаления продукта"""
+    model = Product
+    success_url = reverse_lazy('catalog:products_list')
 
 
 class ContactsView(generic.TemplateView):
