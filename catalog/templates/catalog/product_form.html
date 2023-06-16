@@ -1,22 +1,44 @@
 {% extends 'catalog/base.html' %}
-{% load mediapath %}
-
 {% block content %}
-    <div class="col">
-        <div class="card">
-            <div class="card-body">
-                <form method="post" enctype="multipart/form-data">
+    <form method="post" class="row" enctype="multipart/form-data">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    {% if object %}
+                        Изменить продукт
+                    {% else %}
+                        Новый продукт
+                    {% endif %}
+                </div>
+                <div class="card-body">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <input type="submit" class="btn btn-success" value="{% if object %}Сохранить{% else %}Создать{% endif %}">
-                </form>
-            </div>
-            <div class="card-footer">
-                <a href="{% url 'catalog:products_list' %}" class="btn btn-primary"><< Назад</a>
-                {% if object %}
-                    <a href="{% url 'catalog:product_delete' object.pk %}" class="btn btn-danger float-right">Удалить</a>
-                {% endif %}
+                    <input type="submit" class="btn btn-success"
+                           value="{% if object %}Сохранить{% else %}Создать{% endif %}">
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'catalog:products_list' %}" class="btn btn-primary"><< Назад</a>
+                    {% if object %}
+                        <a href="{% url 'catalog:product_delete' object.pk %}" class="btn btn-danger float-right">Удалить</a>
+                    {% endif %}
+                </div>
             </div>
         </div>
-    </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    Версия продукта
+                </div>
+                <div class="card-body">
+                    {{ formset.management_form }}
+                    {% for form in formset.forms %}
+                        {{ form.as_p }}
+                        {% if not forloop.last %}
+                            <hr>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </form>
 {% endblock %}
