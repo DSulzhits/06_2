@@ -29,7 +29,7 @@ class Product(models.Model):
     updated = models.DateField(verbose_name='дата последнего изменения', auto_now=True, **NULLABLE)
 
     def __str__(self):
-        return f'{self.name} {self.price}'
+        return f'{self.name}'
 
     pass
 
@@ -43,7 +43,7 @@ class Version(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='продукт')
     number = models.IntegerField(verbose_name='номер версии')
     name = models.CharField(max_length=150, verbose_name='название версии')
-    sign_of_current_version = models.BooleanField(default=True, verbose_name='активный')
+    sign_of_current_version = models.BooleanField(default=False, verbose_name='активный')
 
     def __str__(self):
         return f'{self.product} {self.number}'
