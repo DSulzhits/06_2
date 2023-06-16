@@ -27,7 +27,14 @@ class ProductForm(StyleFormMixin, forms.ModelForm):
 class VersionForm(StyleFormMixin, forms.ModelForm):
     class Meta:
         model = Version
-        exclude = ('sign_of_publication',)
+        fields = '__all__'
+
+    # def clean_sign_of_current_version(self):
+    #     cleaned_data = self.cleaned_data['sign_of_current_version']
+    #     if cleaned_data:
+    #         return cleaned_data
+    #     else:
+    #         return "Версия неактивна"
 
 
 class BlogRecordForm(StyleFormMixin, forms.ModelForm):
