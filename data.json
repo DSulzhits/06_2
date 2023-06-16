@@ -1,0 +1,283 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "name": "рассылки",
+      "description": "отправка одного уведомления большому количеству получателей"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "name": "Телеграм боты",
+      "description": "виртуальный робот или искусственный интеллект, который функционирует на основе специальной программы, выполняющий автоматически и/или по заданному расписанию какие-либо действия через интерфейсы, предназначенные для людей"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "name": "Полезные утилиты",
+      "description": "вспомогательная компьютерная программа в составе общего программного обеспечения для выполнения специализированных типовых задач"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+      "name": "Веб-приложения",
+      "description": "различные приложения для вашего браузера"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "name": "E-mail рассылка",
+      "description": "Отправка ваших уведомлений на почту сотрудников",
+      "image": "images/mailing_list.png",
+      "category": 1,
+      "price": 10000,
+      "created": "2023-06-14",
+      "updated": "2023-06-15"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "name": "Бот поддержки",
+      "description": "Бот который позволяет понять проблему клиента, и направить его к нужному специалисту",
+      "image": "images/tg_bot.jpg",
+      "category": 2,
+      "price": 8000,
+      "created": "2023-06-14",
+      "updated": "2023-06-14"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "name": "Диагностика ПО",
+      "description": "Утилита для диагностики состояния вашего ПО и выявления возможных ошибок",
+      "image": "images/diagnostic_1.jpg",
+      "category": 3,
+      "price": 20000,
+      "created": "2023-06-14",
+      "updated": "2023-06-14"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+      "name": "Sky-Cloud",
+      "description": "Облачное хранилище для надежного размещения ваших данных",
+      "image": "images/web-app.jpg",
+      "category": 4,
+      "price": 1000,
+      "created": "2023-06-14",
+      "updated": "2023-06-16"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+      "name": "Бот рассылки",
+      "description": "Бот который рассылает ваши уведомления в телеграм чаты и группы",
+      "image": "images/msg_bot.jpg",
+      "category": 2,
+      "price": 12000,
+      "created": "2023-06-14",
+      "updated": "2023-06-14"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 6,
+    "fields": {
+      "name": "Sky-Security",
+      "description": "Утилита для защиты вашего устройства от вредоносного ПО и злоумышленников",
+      "image": "images/security.png",
+      "category": 3,
+      "price": 5000,
+      "created": "2023-06-14",
+      "updated": "2023-06-14"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 7,
+    "fields": {
+      "name": "Sky-Mail",
+      "description": "Ваш собственный почтовый сервер, на базе нашего облачного хранилища",
+      "image": "images/mail.jpg",
+      "category": 4,
+      "price": 30000,
+      "created": "2023-06-14",
+      "updated": "2023-06-16"
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 1,
+    "fields": {
+      "product": 1,
+      "number": 1,
+      "name": "E-mail рассылка 1",
+      "sign_of_current_version": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 2,
+    "fields": {
+      "product": 2,
+      "number": 3,
+      "name": "Бот поддержки 3",
+      "sign_of_current_version": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 3,
+    "fields": {
+      "product": 3,
+      "number": 2,
+      "name": "Диагностика ПО 2",
+      "sign_of_current_version": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 5,
+    "fields": {
+      "product": 5,
+      "number": 1,
+      "name": "Бот рассылки 1",
+      "sign_of_current_version": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 6,
+    "fields": {
+      "product": 6,
+      "number": 1,
+      "name": "Sky-Security 1",
+      "sign_of_current_version": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 7,
+    "fields": {
+      "product": 7,
+      "number": 1,
+      "name": "Sky-Mail 1",
+      "sign_of_current_version": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 11,
+    "fields": {
+      "product": 4,
+      "number": 2,
+      "name": "Sky-Cloud 2",
+      "sign_of_current_version": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 12,
+    "fields": {
+      "product": 4,
+      "number": 3,
+      "name": "Sky-Cloud 3",
+      "sign_of_current_version": false
+    }
+  },
+  {
+    "model": "catalog.blogrecord",
+    "pk": 1,
+    "fields": {
+      "title": "Бот",
+      "slug": "bot",
+      "content": "Бот, а также интернет-бот — виртуальный робот или искусственный интеллект, который функционирует на основе специальной программы, выполняющий автоматически и/или по заданному расписанию какие-либо действия через интерфейсы, предназначенные для людей.",
+      "preview": "images/tg_bot.jpg",
+      "created": "2023-06-08",
+      "sign_of_publication": true,
+      "views": 108
+    }
+  },
+  {
+    "model": "catalog.blogrecord",
+    "pk": 2,
+    "fields": {
+      "title": "Рассылка",
+      "slug": "mailing_list",
+      "content": "Рассылка — это отправка одного уведомления большому количеству получателей. Это может быть email, SMS, push рассылка, рассылка в мессенджеры и социальные сети. Обычно она осуществляется через сервис рассылок. Можно комбинировать эти виды рассылок для лучшей эффективности.",
+      "preview": "images/mailing_list.png",
+      "created": "2023-06-08",
+      "sign_of_publication": true,
+      "views": 104
+    }
+  },
+  {
+    "model": "catalog.blogrecord",
+    "pk": 3,
+    "fields": {
+      "title": "Утилита",
+      "slug": "utility",
+      "content": "Утилита - вспомогательная компьютерная программа в составе общего программного обеспечения для выполнения специализированных типовых задач, связанных с работой оборудования и операционной системы.",
+      "preview": "images/utility.jpg",
+      "created": "2023-06-08",
+      "sign_of_publication": true,
+      "views": 101
+    }
+  },
+  {
+    "model": "catalog.blogrecord",
+    "pk": 4,
+    "fields": {
+      "title": "Веб-Приложение",
+      "slug": "web_app",
+      "content": "Веб-приложение — клиент-серверное приложение, в котором клиент взаимодействует с веб-сервером при помощи браузера. Логика веб-приложения распределена между сервером и клиентом, хранение данных осуществляется, преимущественно, на сервере, обмен информацией происходит по сети.",
+      "preview": "images/web-app.jpg",
+      "created": "2023-06-08",
+      "sign_of_publication": true,
+      "views": 102
+    }
+  },
+  {
+    "model": "catalog.blogrecord",
+    "pk": 5,
+    "fields": {
+      "title": "Тест создания",
+      "slug": "test_creation",
+      "content": "Данная запись создана для тестирования создания самой записи, а также загрузки изображения (превью) к этой записи",
+      "preview": "images/records/testy_KFHa6VR.jpg",
+      "created": "2023-06-08",
+      "sign_of_publication": false,
+      "views": 104
+    }
+  },
+  {
+    "model": "catalog.blogrecord",
+    "pk": 6,
+    "fields": {
+      "title": "Тест Дективации",
+      "slug": "test_deactivation",
+      "content": "Данная запись создана для проверки того как работает активация/деактивация (по умолчанию будет лежать в деактивированных записях)",
+      "preview": "images/records/block.jpg",
+      "created": "2023-06-08",
+      "sign_of_publication": false,
+      "views": 6
+    }
+  }
+]
