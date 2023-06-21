@@ -10,6 +10,8 @@
             </ul>
             <a class="btn btn-lg btn-block btn-outline-info"
                href="{% url 'catalog:product_detail' object.pk %}">Информация</a>
+            <a class="btn btn-lg btn-block btn-outline-info"
+               href="{% url 'catalog:product_version' object.pk %}">Версия</a>
             <a class="btn btn-lg btn-block btn-outline-warning"
                href="{% url 'catalog:product_update' object.pk %}">Изменить/Удалить</a>
             <button type="button" class="btn btn-lg btn-block btn-outline-success">Купить</button>
