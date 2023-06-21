@@ -7,5 +7,5 @@ def send_email(record_object):
         f'100 просмотров {record_object}',
         f'Юху! Уже 100 просмотров записи {record_object}!',
         settings.EMAIL_HOST_USER,
-        recipient_list=['dsulzhits@gmail.com']
+        recipient_list=['dsulzhits@gmail.com', 'suz17@bk.ru']
     )
