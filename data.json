@@ -41,7 +41,8 @@
       "category": 1,
       "price": 10000,
       "created": "2023-06-14",
-      "updated": "2023-06-15"
+      "updated": "2023-06-15",
+      "creator": null
     }
   },
   {
@@ -54,7 +55,8 @@
       "category": 2,
       "price": 8000,
       "created": "2023-06-14",
-      "updated": "2023-06-14"
+      "updated": "2023-06-14",
+      "creator": null
     }
   },
   {
@@ -67,7 +69,8 @@
       "category": 3,
       "price": 20000,
       "created": "2023-06-14",
-      "updated": "2023-06-14"
+      "updated": "2023-06-14",
+      "creator": null
     }
   },
   {
@@ -80,7 +83,8 @@
       "category": 4,
       "price": 1000,
       "created": "2023-06-14",
-      "updated": "2023-06-16"
+      "updated": "2023-06-16",
+      "creator": null
     }
   },
   {
@@ -93,7 +97,8 @@
       "category": 2,
       "price": 12000,
       "created": "2023-06-14",
-      "updated": "2023-06-14"
+      "updated": "2023-06-14",
+      "creator": null
     }
   },
   {
@@ -106,7 +111,8 @@
       "category": 3,
       "price": 5000,
       "created": "2023-06-14",
-      "updated": "2023-06-14"
+      "updated": "2023-06-14",
+      "creator": null
     }
   },
   {
@@ -119,7 +125,22 @@
       "category": 4,
       "price": 30000,
       "created": "2023-06-14",
-      "updated": "2023-06-16"
+      "updated": "2023-06-16",
+      "creator": null
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 8,
+    "fields": {
+      "name": "Тест привязки",
+      "description": "Тестирование привязки активного пользователя к созданному продукту",
+      "image": "images/products/testy_5UtDiGW.jpg",
+      "category": 3,
+      "price": 9999,
+      "created": "2023-06-22",
+      "updated": "2023-06-22",
+      "creator": 1
     }
   },
   {
@@ -149,6 +170,16 @@
       "product": 3,
       "number": 2,
       "name": "Диагностика ПО 2",
+      "sign_of_current_version": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 4,
+    "fields": {
+      "product": 4,
+      "number": 2,
+      "name": "Sky-Cloud 2",
       "sign_of_current_version": true
     }
   },
@@ -184,22 +215,12 @@
   },
   {
     "model": "catalog.version",
-    "pk": 11,
+    "pk": 8,
     "fields": {
-      "product": 4,
-      "number": 2,
-      "name": "Sky-Cloud 2",
+      "product": 8,
+      "number": 1,
+      "name": "тест1",
       "sign_of_current_version": true
-    }
-  },
-  {
-    "model": "catalog.version",
-    "pk": 12,
-    "fields": {
-      "product": 4,
-      "number": 3,
-      "name": "Sky-Cloud 3",
-      "sign_of_current_version": false
     }
   },
   {
