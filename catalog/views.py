@@ -56,7 +56,7 @@ class ProductCreateView(generic.CreateView):
     form_class = ProductForm
 
     def get_success_url(self):
-        return reverse('catalog:products_list', args=[self.kwargs.get('pk')])
+        return reverse('catalog:products_list')
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
@@ -72,10 +72,11 @@ class ProductCreateView(generic.CreateView):
         context_data = self.get_context_data()
         formset = context_data['formset']
         self.object = form.save()
-
         if formset.is_valid():
             formset.instance = self.object
             formset.save()
+        self.object.creator = self.request.user
+        self.object.save()
         return super().form_valid(form)
 
 
