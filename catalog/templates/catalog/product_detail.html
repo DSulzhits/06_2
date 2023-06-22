@@ -29,6 +29,10 @@
                         <td>Дата обновления:</td>
                         <td>{{ product.updated }}</td>
                     </tr>
+                    <tr>
+                        <td>Создан:</td>
+                        <td>{{ product.creator|default:"-" }}</td>
+                    </tr>
                     <img src="{% mediapath object.image %}" alt="Изображение" width="450" height="400"/>
                 </table>
             </div>
