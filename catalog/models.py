@@ -12,7 +12,7 @@ class Category(models.Model):
     # category_created_at = models.DateTimeField(verbose_name='дата создания', auto_now_add=True, **NULLABLE)
 
     def __str__(self):
-        return f'{self.name} {self.description}'
+        return f'{self.name}'
 
     class Meta:
         verbose_name = 'категория'
