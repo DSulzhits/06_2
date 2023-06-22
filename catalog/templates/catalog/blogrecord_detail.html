@@ -21,6 +21,10 @@
                         <td>Количество просмотров:</td>
                         <td>{{ blogrecord.views }}</td>
                     </tr>
+                    <tr>
+                        <td>Автор:</td>
+                        <td>{{ blogrecord.author|default:"-" }}</td>
+                    </tr>
                     <img src="{% mediapath blogrecord.preview %}" alt="Изображение" width="450" height="300"/>
                 </table>
             </div>

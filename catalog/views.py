@@ -223,6 +223,13 @@ class BlogRecordCreateView(generic.CreateView):
     form_class = BlogRecordForm
     success_url = reverse_lazy('catalog:blog_records')
 
+    def form_valid(self, form):
+        self.object = form.save()
+        self.object.author = self.request.user
+        self.object.save()
+
+        return super().form_valid(form)
+
 
 class BlogRecordUpdateView(generic.UpdateView):
     """Контроллер для обновления блоговой записи"""

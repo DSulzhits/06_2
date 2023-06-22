@@ -66,6 +66,7 @@ class BlogRecord(models.Model):
     created = models.DateField(verbose_name='дата создания', auto_now_add=True)
     sign_of_publication = models.BooleanField(default=True, verbose_name='активный')
     views = models.IntegerField(default=0)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE, verbose_name='автор')
 
     def __str__(self):
         return f"{self.title}, {self.created}"
