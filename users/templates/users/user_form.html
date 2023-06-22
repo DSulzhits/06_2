@@ -1,5 +1,5 @@
 {% extends 'catalog/base.html' %}
-
+{% load mediapath %}
 {% block content %}
     <div class="row">
         <div class="col-3"></div>
@@ -11,6 +11,7 @@
                 <div class="card-body">
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
+                        <img src="{% mediapath user.avatar %}" alt="Изображение" width="200" height="200"/>
                         {{ form.as_p }}
                         <button type="submit" class="btn btn-success">Сохранить</button>
                     </form>
