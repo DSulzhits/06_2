@@ -1,4 +1,7 @@
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.forms import inlineformset_factory
+from django.http import Http404
+
 from catalog.services import send_email
 from catalog.models import Product, BlogRecord, Version
 from django.views import generic
@@ -7,7 +10,7 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from catalog.forms import BlogRecordForm, ProductForm, VersionForm
 
 
-class HomeView(generic.TemplateView):
+class HomeView(LoginRequiredMixin, generic.TemplateView):
     """Контроллер для работы с домашней страницей, показывает только 4 первых продукта"""
     template_name = 'catalog/home.html'
     extra_context = {
@@ -16,7 +19,7 @@ class HomeView(generic.TemplateView):
     }
 
 
-class ProductListView(generic.ListView):
+class ProductListView(LoginRequiredMixin, generic.ListView):
     """Контроллер для работы со страницей, со всеми продуктами"""
     model = Product
     extra_context = {
@@ -32,7 +35,7 @@ class ProductListView(generic.ListView):
 #     return render(request, 'catalog/home.html', context)
 
 
-class ProductDetailView(generic.DetailView):
+class ProductDetailView(LoginRequiredMixin, generic.DetailView):
     """Контроллер для работы со страницей продукта (подробная информация о продукте)"""
     model = Product
 
@@ -50,7 +53,7 @@ class ProductDetailView(generic.DetailView):
 #     }
 #     return render(request, 'catalog/product.html', context)
 
-class ProductCreateView(generic.CreateView):
+class ProductCreateView(LoginRequiredMixin, generic.CreateView):
     """Контроллер для создания продукта"""
     model = Product
     form_class = ProductForm
@@ -80,10 +83,16 @@ class ProductCreateView(generic.CreateView):
         return super().form_valid(form)
 
 
-class ProductUpdateView(generic.UpdateView):
+class ProductUpdateView(LoginRequiredMixin, generic.UpdateView):
     """Контроллер для обновления продукта"""
     model = Product
     form_class = ProductForm
+
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        if self.object.creator != self.request.user and not self.request.user.is_staff:
+            raise Http404
+        return self.object
 
     def get_success_url(self):
         return reverse('catalog:product_update', args=[self.kwargs.get('pk')])
@@ -109,13 +118,13 @@ class ProductUpdateView(generic.UpdateView):
         return super().form_valid(form)
 
 
-class ProductDeleteView(generic.DeleteView):
+class ProductDeleteView(LoginRequiredMixin, generic.DeleteView):
     """Контроллер для удаления продукта"""
     model = Product
     success_url = reverse_lazy('catalog:products_list')
 
 
-class VersionListView(generic.ListView):
+class VersionListView(LoginRequiredMixin, generic.ListView):
     model = Version
     extra_context = {
         'title': 'Список активных версий',
@@ -128,19 +137,19 @@ class VersionListView(generic.ListView):
         return queryset
 
 
-class VersionCreateView(generic.CreateView):
+class VersionCreateView(LoginRequiredMixin, generic.CreateView):
     model = Version
     form_class = ProductForm
     success_url = reverse_lazy('catalog:products_list')
 
 
-class VersionUpdateView(generic.UpdateView):
+class VersionUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Version
     form_class = VersionForm
     success_url = reverse_lazy('catalog:products_list')
 
 
-class VersionDetailView(generic.DetailView):
+class VersionDetailView(LoginRequiredMixin, generic.DetailView):
     model = Version
 
     def get_context_data(self, **kwargs):
@@ -149,7 +158,7 @@ class VersionDetailView(generic.DetailView):
         return context_data
 
 
-class ContactsView(generic.TemplateView):
+class ContactsView(LoginRequiredMixin, generic.TemplateView):
     """Контроллер для работы страницы с контактами"""
     template_name = 'catalog/contacts.html'
     extra_context = {
@@ -173,7 +182,7 @@ class ContactsView(generic.TemplateView):
 #        print(f'User {name}, with phone {phone}, send message: {message}')
 #    return render(request, 'catalog/contacts.html')
 
-class BlogRecordListView(generic.ListView):
+class BlogRecordListView(LoginRequiredMixin, generic.ListView):
     """Контроллер для отображения блоговых записей"""
     model = BlogRecord
     extra_context = {
@@ -187,7 +196,7 @@ class BlogRecordListView(generic.ListView):
         return queryset
 
 
-class BlogRecordDeactivatedListView(generic.ListView):
+class BlogRecordDeactivatedListView(LoginRequiredMixin, generic.ListView):
     """Контроллер для отображения блоговых записей"""
     model = BlogRecord
     extra_context = {
@@ -201,7 +210,7 @@ class BlogRecordDeactivatedListView(generic.ListView):
         return queryset
 
 
-class BlogRecordDetailView(generic.DetailView):
+class BlogRecordDetailView(LoginRequiredMixin, generic.DetailView):
     """Контроллер для отображения одной блоговой записи в подробностях"""
     model = BlogRecord
 
@@ -217,10 +226,11 @@ class BlogRecordDetailView(generic.DetailView):
         return context_data
 
 
-class BlogRecordCreateView(generic.CreateView):
+class BlogRecordCreateView(LoginRequiredMixin, PermissionRequiredMixin, generic.CreateView):
     """Контроллер для создания блоговой записи"""
     model = BlogRecord
     form_class = BlogRecordForm
+    permission_required = 'catalog.add_blogrecord'
     success_url = reverse_lazy('catalog:blog_records')
 
     def form_valid(self, form):
@@ -231,16 +241,18 @@ class BlogRecordCreateView(generic.CreateView):
         return super().form_valid(form)
 
 
-class BlogRecordUpdateView(generic.UpdateView):
+class BlogRecordUpdateView(LoginRequiredMixin, PermissionRequiredMixin, generic.UpdateView):
     """Контроллер для обновления блоговой записи"""
     model = BlogRecord
     form_class = BlogRecordForm
+    permission_required = 'catalog.change_blogrecord'
     success_url = reverse_lazy('catalog:blog_records')
 
 
-class BlogRecordDeleteView(generic.DeleteView):
+class BlogRecordDeleteView(LoginRequiredMixin, PermissionRequiredMixin, generic.DeleteView):
     """Контроллер для удаления блоговой записи"""
     model = BlogRecord
+    permission_required = 'catalog.delete_blogrecord'
     success_url = reverse_lazy('catalog:blog_records')
 
 
