@@ -10,7 +10,7 @@
             </ul>
             <a class="btn btn-lg btn-block btn-outline-info"
                href="{% url 'catalog:product_detail' object.pk %}">Информация</a>
-            {% if user.is_authenticated %}
+            {% if user.is_authenticated and object.creator == user or perms.catalog.change_product %}
                 <a class="btn btn-lg btn-block btn-outline-info"
                    href="{% url 'catalog:version_detail' object.pk|default:"url 'catalog:product_update'" %}">Версия</a>
                 <a class="btn btn-lg btn-block btn-outline-warning"

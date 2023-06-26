@@ -7,12 +7,12 @@
                 {% include 'catalog/includes/inc_blogrecord_form.html' %}
             {% endfor %}
         </div>
-    {% if user.is_authenticated %}
+    {% if perms.catalog.change_blogrecord %}
     <a href="{% url 'catalog:blog_record_create' %}" class="btn btn-outline-success m-2">Создать запись</a>
     <a href="{% url 'catalog:blog_records' %}" class="btn btn-outline-primary m-2">Активные записи</a>
     <a href="{% url 'catalog:blog_records_deactivated' %}" class="btn btn-outline-secondary m-2">Деактивированные записи</a>
     {% else %}
-        Создание или редактирование записей доступно только авторизированным пользователям
+        Создание или редактирование записей доступно только администрации ресурса
     {% endif %}
     </div>
 

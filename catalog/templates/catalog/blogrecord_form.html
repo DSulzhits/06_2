@@ -13,7 +13,7 @@
             </div>
             <div class="card-footer">
                 <a href="{% url 'catalog:blog_records' %}" class="btn btn-primary"><< Назад</a>
-                {% if object %}
+                {% if object and perms.catalog.delete_blogrecord%}
                     <a href="{% url 'catalog:blog_record_delete' object.slug %}" class="btn btn-danger float-right">Удалить</a>
                 {% endif %}
             </div>
