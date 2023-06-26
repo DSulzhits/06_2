@@ -28,6 +28,7 @@ class Product(models.Model):
     price = models.PositiveIntegerField(verbose_name='цена за покупку')
     created = models.DateField(verbose_name='дата создания', auto_now_add=True, **NULLABLE)
     updated = models.DateField(verbose_name='дата последнего изменения', auto_now=True, **NULLABLE)
+    is_active = models.BooleanField(default=False, verbose_name='активный')
 
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE,
                                 verbose_name='создатель')
