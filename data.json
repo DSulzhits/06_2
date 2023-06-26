@@ -41,7 +41,8 @@
       "category": 1,
       "price": 10000,
       "created": "2023-06-14",
-      "updated": "2023-06-15",
+      "updated": "2023-06-25",
+      "is_active": true,
       "creator": null
     }
   },
@@ -55,7 +56,8 @@
       "category": 2,
       "price": 8000,
       "created": "2023-06-14",
-      "updated": "2023-06-14",
+      "updated": "2023-06-25",
+      "is_active": true,
       "creator": null
     }
   },
@@ -69,7 +71,8 @@
       "category": 3,
       "price": 20000,
       "created": "2023-06-14",
-      "updated": "2023-06-14",
+      "updated": "2023-06-25",
+      "is_active": true,
       "creator": null
     }
   },
@@ -83,7 +86,8 @@
       "category": 4,
       "price": 1000,
       "created": "2023-06-14",
-      "updated": "2023-06-16",
+      "updated": "2023-06-25",
+      "is_active": true,
       "creator": null
     }
   },
@@ -97,7 +101,8 @@
       "category": 2,
       "price": 12000,
       "created": "2023-06-14",
-      "updated": "2023-06-14",
+      "updated": "2023-06-25",
+      "is_active": true,
       "creator": null
     }
   },
@@ -111,7 +116,8 @@
       "category": 3,
       "price": 5000,
       "created": "2023-06-14",
-      "updated": "2023-06-14",
+      "updated": "2023-06-25",
+      "is_active": true,
       "creator": null
     }
   },
@@ -125,7 +131,8 @@
       "category": 4,
       "price": 30000,
       "created": "2023-06-14",
-      "updated": "2023-06-16",
+      "updated": "2023-06-25",
+      "is_active": true,
       "creator": null
     }
   },
@@ -139,7 +146,23 @@
       "category": 3,
       "price": 9999,
       "created": "2023-06-22",
-      "updated": "2023-06-22",
+      "updated": "2023-06-25",
+      "is_active": true,
+      "creator": 1
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 9,
+    "fields": {
+      "name": "Тест Редактирование",
+      "description": "Проверка продукта на возможность редактирования его создателем",
+      "image": "images/products/testy.jpg",
+      "category": 3,
+      "price": 8888,
+      "created": "2023-06-25",
+      "updated": "2023-06-25",
+      "is_active": true,
       "creator": 1
     }
   },
@@ -224,6 +247,16 @@
     }
   },
   {
+    "model": "catalog.version",
+    "pk": 9,
+    "fields": {
+      "product": 9,
+      "number": 1,
+      "name": "тестредакт1",
+      "sign_of_current_version": true
+    }
+  },
+  {
     "model": "catalog.blogrecord",
     "pk": 1,
     "fields": {
@@ -233,7 +266,8 @@
       "preview": "images/tg_bot.jpg",
       "created": "2023-06-08",
       "sign_of_publication": true,
-      "views": 109
+      "views": 118,
+      "author": null
     }
   },
   {
@@ -246,7 +280,8 @@
       "preview": "images/mailing_list.png",
       "created": "2023-06-08",
       "sign_of_publication": true,
-      "views": 105
+      "views": 114,
+      "author": null
     }
   },
   {
@@ -259,7 +294,8 @@
       "preview": "images/utility.jpg",
       "created": "2023-06-08",
       "sign_of_publication": true,
-      "views": 102
+      "views": 103,
+      "author": null
     }
   },
   {
@@ -271,8 +307,9 @@
       "content": "Веб-приложение — клиент-серверное приложение, в котором клиент взаимодействует с веб-сервером при помощи браузера. Логика веб-приложения распределена между сервером и клиентом, хранение данных осуществляется, преимущественно, на сервере, обмен информацией происходит по сети.",
       "preview": "images/web-app.jpg",
       "created": "2023-06-08",
-      "sign_of_publication": true,
-      "views": 103
+      "sign_of_publication": false,
+      "views": 106,
+      "author": null
     }
   },
   {
@@ -284,8 +321,9 @@
       "content": "Данная запись создана для тестирования создания самой записи, а также загрузки изображения (превью) к этой записи",
       "preview": "images/records/testy_KFHa6VR.jpg",
       "created": "2023-06-08",
-      "sign_of_publication": false,
-      "views": 105
+      "sign_of_publication": true,
+      "views": 105,
+      "author": null
     }
   },
   {
@@ -298,7 +336,22 @@
       "preview": "images/records/block.jpg",
       "created": "2023-06-08",
       "sign_of_publication": false,
-      "views": 101
+      "views": 101,
+      "author": null
+    }
+  },
+  {
+    "model": "catalog.blogrecord",
+    "pk": 8,
+    "fields": {
+      "title": "Тест автор",
+      "slug": "test_author",
+      "content": "Запись для проверки ее авторства активным пользователем",
+      "preview": "images/records/testy_DZzV7VK.jpg",
+      "created": "2023-06-22",
+      "sign_of_publication": true,
+      "views": 102,
+      "author": 1
     }
   }
 ]
