@@ -3,11 +3,12 @@ from django.forms import inlineformset_factory
 from django.http import Http404
 
 from catalog.services import send_email
-from catalog.models import Product, BlogRecord, Version
+from catalog.models import Product, BlogRecord, Version, Category
 from django.views import generic
 from django.urls import reverse_lazy
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from catalog.forms import BlogRecordForm, ProductForm, VersionForm
+from catalog.services import get_cached_category_subjects
 
 
 class HomeView(LoginRequiredMixin, generic.TemplateView):
@@ -17,6 +18,20 @@ class HomeView(LoginRequiredMixin, generic.TemplateView):
         'object_list': Product.objects.all()[:4],
         'title': 'Домашняя страница'
     }
+
+
+class CategoryListView(LoginRequiredMixin, generic.ListView):
+    model = Category
+    extra_context = {
+        'title': 'Категории продуктов',
+        'category_list': Category.objects.all(),
+    }
+
+    def get_context_data(self, **kwargs):
+        """Переопределение метода, логика прописана в services.py"""
+        context_data = super().get_context_data(**kwargs)
+        context_data['category_list'] = get_cached_category_subjects()
+        return context_data
 
 
 class ProductListView(LoginRequiredMixin, generic.ListView):
