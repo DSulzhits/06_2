@@ -24,7 +24,6 @@ class CategoryListView(LoginRequiredMixin, generic.ListView):
     model = Category
     extra_context = {
         'title': 'Категории продуктов',
-        'category_list': Category.objects.all(),
     }
 
     def get_context_data(self, **kwargs):
